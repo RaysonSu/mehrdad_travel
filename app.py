@@ -1,18 +1,21 @@
-from db.db import db
-from flask import Flask, render_template, make_response
+from db.db import Database
+from flask import Flask, render_template, make_response, Response, request
 
 app = Flask(__name__)
-print("Hello")
+
 @app.route("/")
-def index():
+def index() -> str:
     return render_template("index.html")
 
 @app.route("/api/holidays", methods=["GET"])
-def serve_holidays():
-    holidays = db.get_holidays("*")
+def serve_holidays() -> Response:
+    if (location := request.args.get("location")) is None:
+        return make_response("oh no", 400)
+
+    with Database() as db:
+        holidays = db.get_holidays(location)
 
     return make_response(holidays, 200)
-
 
 if __name__ == "__main__":
     app.run()

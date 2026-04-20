@@ -1,16 +1,16 @@
-from typing import Tuple
 from random import randint
+from typing import Any
 import sqlite3
-
-# test
 
 
 class Database:
-    def __init__(self):
+    def __enter__(self) -> Database:
         self.__conn = sqlite3.connect("./db/holidays.db")
         self.__cursor = self.__conn.cursor()
 
-    def close(self):
+        return self
+
+    def __exit__(self, *args) -> None:
         self.__conn.close()
     
     def add_new_customer(self, forename: str, surname: str, telephone: str):
@@ -18,22 +18,19 @@ class Database:
         self.__cursor.execute(f"INSERT INTO Customer VALUES ('{id_}', '{forename}', '{surname}', '{telephone}')")
         self.__conn.commit()
 
-    def get_all_customers(self) -> Tuple[Tuple]:    
+    def get_all_customers(self) -> list[list[Any]]:    
         records = self.__cursor.execute("SELECT * FROM Customer").fetchall()
         return records
     
-    def get_holidays(self, location: str) -> Tuple[Tuple]:
+    def get_holidays(self, location: str) -> list[list[Any]]:
         records = self.__cursor.execute("SELECT * FROM Holiday WHERE Location = ?", (location,)).fetchall()
         return records
-    
-
-
-db = Database()
 
 if __name__ == "__main__":
     # tests
-    print(db.get_holidays("New York"))
-    
+    with Database() as db:
+        print(db.get_holidays("New York"))
+        print(db.get_holidays("*"))
 
     # should see martin davies
 

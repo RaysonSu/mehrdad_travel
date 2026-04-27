@@ -1,6 +1,6 @@
 from random import randint
 from typing import Any
-from static.models import Holiday
+from models import Holiday
 import sqlite3
 
 

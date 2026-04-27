@@ -17,5 +17,11 @@ def serve_holidays() -> Response:
 
     return make_response(holidays, 200)
 
+@app.route("/api/bookings/new", methods=["POST"])
+def recive_booking() -> Response:
+    print(request.get_json())
+
+    return make_response({"all": "ok"}, 200)
+
 if __name__ == "__main__":
     app.run(debug=True)

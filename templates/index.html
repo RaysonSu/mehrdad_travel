@@ -74,25 +74,25 @@
             </div>
 
             <div class="guest-section">
-              <label class="field" for="guest1">Enter guest 1 name</label>
-              <input id="guest1" type="text" placeholder="Guest #1" disabled />
+              <label class="field" for="guest1-name">Enter guest 1 name</label>
+              <input id="guest1-name" type="text" placeholder="Guest #1" disabled />
 
               <div style="margin-top:10px;">
                 <div class="field" style="margin-bottom:6px;">Select guest 1 food allergies</div>
-                <div class="checkboxes" aria-hidden="true">
-                  <label class="checkbox"><input type="checkbox" disabled /> cheese</label>
-                  <label class="checkbox"><input type="checkbox" disabled /> shellfish</label>
-                  <label class="checkbox"><input type="checkbox" disabled /> dairy</label>
-                  <label class="checkbox"><input type="checkbox" disabled /> pineapple</label>
+                <div id="guest1-allergies" class="checkboxes" aria-hidden="true">
+                  <label class="checkbox"><input type="checkbox" value="cheese" disabled /> cheese</label>
+                  <label class="checkbox"><input type="checkbox" value="shellfish" disabled /> shellfish</label>
+                  <label class="checkbox"><input type="checkbox" value="dairy" disabled /> dairy</label>
+                  <label class="checkbox"><input type="checkbox" value="pineapple" disabled /> pineapple</label>
                 </div>
               </div>
 
               <div style="margin-top:10px;">
-                <label class="field" for="meal">Select guest 1 inflight meal</label>
-                <select id="meal" disabled>
-                  <option>pizza</option>
-                  <option>pasta</option>
-                  <option>burger</option>
+                <label class="field" for="guest1-meal">Select guest 1 inflight meal</label>
+                <select id="guest1-meal" disabled>
+                  <option value="pizza">pizza</option>
+                  <option value="pasta">pasta</option>
+                  <option value="burger">burger</option>
                 </select>
               </div>
 
@@ -103,7 +103,7 @@
             </div>
 
             <div class="form-actions">
-              <button class="btn" type="submit" disabled>BOOK HOLIDAY NOW!</button>
+              <button id="book" class="btn" type="button" disabled>BOOK HOLIDAY NOW!</button>
               <button class="btn ghost" type="button" disabled>Save for later</button>
             </div>
 
@@ -157,11 +157,7 @@
   <py-config>
     [[fetch]]
     from ="/static/pyscript"
-    files = ["api.py", "domain.py", "ui.py"]
-
-    [[fetch]]
-    from ="/static"
-    files = ["models.py"]
+    files = ["api.py", "domain.py", "ui.py", "dto.py"]
   </py-config>
 
   <script type="py" src="static/pyscript/ui.py">

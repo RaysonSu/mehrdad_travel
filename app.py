@@ -18,4 +18,4 @@ def serve_holidays() -> Response:
     return make_response(holidays, 200)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

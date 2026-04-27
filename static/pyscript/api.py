@@ -6,8 +6,8 @@ def sanitise(string: str) -> str:
 
 async def get_request_holidays(location: str) -> str:
     response = await pyfetch(f"/api/holidays?location={sanitise(location)}")   
-    data = await response.json()
+    data = await response.text()
 
-    print(f"{location} => {data}")
+    # print(f"{location} => {data}")
 
-    return data
+    return str(data)

@@ -1,5 +1,6 @@
 from random import randint
 from typing import Any
+from static.models import Holiday
 import sqlite3
 
 
@@ -22,9 +23,12 @@ class Database:
         records = self.__cursor.execute("SELECT * FROM Customer").fetchall()
         return records
     
-    def get_holidays(self, location: str) -> list[list[Any]]:
+    def get_holidays(self, location: str) -> list[Holiday]:
         records = self.__cursor.execute("SELECT * FROM Holiday WHERE Location = ?", (location,)).fetchall()
-        return records
+        return [
+            Holiday(*record)
+            for record in records
+        ]
 
 if __name__ == "__main__":
     # tests

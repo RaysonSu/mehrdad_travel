@@ -54,3 +54,4 @@ def read_guest(id_: int) -> dict[str, Any]:
     meal = document.getElementById(f"guest{id_}-meal").value
 
     return parse_guest(guest_name, allergies, meal)
+

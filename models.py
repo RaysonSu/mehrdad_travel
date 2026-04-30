@@ -3,6 +3,8 @@ from __future__ import annotations
 from datetime import date, datetime
 from dataclasses import dataclass
 
+from typing import Any
+
 @dataclass
 class Holiday:
     holiday_id: str
@@ -11,29 +13,6 @@ class Holiday:
     duration: int
     outbound_journey_id: str
     return_journey_id: str
-
-    # def as_dict(self) -> dict[str, str]:
-    #     return {
-    #         "duration": str(self.duration),
-    #         "holiday_id": self.holiday_id,
-    #         "location": self.location,
-    #         "departure_date": date.strftime(self.departure_date, "%d/%m/%Y"),
-    #     }
-
-    # @staticmethod
-    # def from_dict(dictionary: dict[str, str | int]) -> Holiday:
-    #     return Holiday(
-    #         str(dictionary["holiday_id"]),
-    #         str(dictionary["location"]),
-    #         datetime.strptime(str(dictionary["departure_date"]), "%Y-%m-%d"),
-    #         int(dictionary["duration"]),
-    #         str(dictionary["outbound_journey_id"]),
-    #         str(dictionary["return_journey_id"])
-    #     )
-    
-    # @property
-    # def departure_date_str(self) -> str:
-    #     return datetime.strftime(self.departure_date, "%Y-%m-%d")
 
 @dataclass
 class Customer:
@@ -50,9 +29,18 @@ class Booking:
     num_guests: int
 
 @dataclass
+class Guest:
+    pass
+
+@dataclass
 class Flight:
     airline: str
     flight_number: str
     departure_time: datetime
     duration: int
 
+@dataclass
+class Allergen:
+    allergen_id: str
+
+class 

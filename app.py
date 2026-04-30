@@ -13,7 +13,7 @@ def serve_holidays() -> Response:
         return make_response("oh no", 400)
 
     with Database() as db:
-        holidays = db.get_holidays(location)
+        holidays = db.get_holidays_by_location(location)
 
     return make_response(holidays, 200)
 
